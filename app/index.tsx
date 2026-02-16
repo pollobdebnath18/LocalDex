@@ -1,7 +1,15 @@
 import Colors from "@/services/Colors";
+import { useNavigation } from "expo-router";
+import { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <Image
@@ -9,7 +17,7 @@ export default function Index() {
         style={{
           width: "100%",
           height: 250,
-          marginTop: 80,
+          marginTop: 120,
           marginBottom: 30,
         }}
       />
@@ -28,19 +36,38 @@ export default function Index() {
         <Text
           style={{
             fontFamily: "appFont",
-            fontSize: 18,
+            fontSize: 17,
             textAlign: "center",
           }}
         >
           Discover thousands of local Business all in one place
         </Text>
-        <View style={styles.button}>
+        <View
+          style={[
+            styles.button,
+            {
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignContent: "center",
+              gap: 10,
+            },
+          ]}
+        >
+          <Image
+            source={require("../assets/images/google.png")}
+            style={{
+              width: 18,
+              height: 18,
+              // backgroundColor:'white'
+            }}
+          />
           <Text
             style={{
               fontFamily: "appFont",
               textAlign: "center",
               fontSize: 18,
-              color:'white'
+              color: "white",
             }}
           >
             Sign in with Google
@@ -51,6 +78,7 @@ export default function Index() {
             styles.button,
             {
               backgroundColor: Colors.PRIMARY,
+              borderColor: Colors.WHITE,
             },
           ]}
         >
@@ -59,7 +87,7 @@ export default function Index() {
               fontFamily: "appFont",
               textAlign: "center",
               fontSize: 18,
-              color:'white',
+              color: "white",
             }}
           >
             Skip
@@ -86,6 +114,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
     marginTop: 10,
-    backgroundColor:Colors.BLACK,
+    backgroundColor: Colors.BLACK,
   },
 });
